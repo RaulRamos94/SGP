@@ -1,0 +1,81 @@
+import { api } from "./api";
+
+export async function salvarUsuario(dadosUsuario, setExibirModal) {
+    await api.post("/usuarios", dadosUsuario)
+        .then((response) => {
+            if (response.status === 201) {
+                setExibirModal(true)
+            }
+        })
+        .catch((erro) => {
+            alert("Erro ao cadastrar usuário")
+            console.error("Error ao cadastrar usuário: ", erro)
+        })
+}
+
+export async function listarUsuarios(setUsuarios) {
+    await api.get("/usuarios")
+        .then((response) => {
+            if (response.status === 200) {
+                setUsuarios(response.data.content)
+            }
+        })
+        .catch((erro => {
+            alert("Erro ao listar os usuários.")
+            console.error("Erro ao exibir a lista de usuários: ", erro)
+        }))
+}
+
+export async function obterDadosUsuario(
+    id, 
+    setNome,
+    setCpf,
+    setEmail,
+    setDataNascimento,
+    setSenha,
+    setStatus
+) {
+    await api.get(`/usuarios/${id}`)
+        .then((response) => {
+            if (response.status === 200) {
+                setNome(response.data.nome)
+                setCpf(response.data.cpf)
+                setEmail(response.data.email)
+                setDataNascimento(response.data.dataNascimento)
+                setSenha(response.data.senha)
+                setStatus(response.data.status)
+            }
+        })
+        .catch((erro => {
+            alert("Erro ao obter dados do usuário.")
+            console.error("Erro ao obter dados do usuário.", erro)
+        }))
+}
+
+export async function editarUsuario(id, dadosUsuario, setExibirModal) {
+    await api.put(`/usuarios/${id}`, dadosUsuario)
+        .then((response) => {
+            if (response.status === 200) {
+               setExibirModal(true)
+            }
+        })
+        .catch((erro) => {
+            alert("Erro ao obter dados do usuário.")
+            console.error("Erro ao obter dados do usuário.", erro)
+        })
+}
+
+
+export async function deletarUsuario(id, setExibirModal) {
+    await api.delete(`/usuarios/${id}`)
+    .then((response) => {
+        if(response.status === 204){
+            setExibirModal(false)
+        }
+    })
+    .catch((erro) => {
+        alert("Erro ao excluir usuário.")
+        console.error("Erro ao excluir usuário.")
+    })
+    
+}
