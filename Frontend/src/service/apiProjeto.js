@@ -1,28 +1,28 @@
 import { api } from "./api";
+import { obterDadosUsuario } from "./apiUsuario";
 
-export async function salvarUsuario(dadosUsuario, setExibirModal) {
-    await api.post("/usuarios", dadosUsuario)
+export async function salvarProjeto(dadosProjeto, setExibirModal) {
+    await api.post("/projetos", dadosProjeto)
         .then((response) => {
             if (response.status === 201) {
                 setExibirModal(true)
             }
         })
         .catch((erro) => {
-            alert("Erro ao cadastrar usuário")
-            console.error("Error ao cadastrar usuário: ", erro)
+            alert("Erro ao cadastrar o projeto")
+            console.error("Error ao cadastrar o projeto: ", erro)
         })
 }
-
-export async function listarUsuarios(setUsuarios, page = 0, size = 20, sort = "nome,asc", setPaginacao) {
+export async function listarProjetos(setProjetos, page = 0, size = 20, sort = "nome,asc", setPaginacao) {
     try {
-        const response = await api.get("/usuarios", {
+        const response = await api.get("/projetos", {
             params: { page, size, sort }
         });
 
         if (response.status === 200) {
             const data = response.data;
 
-            setUsuarios(data.content);
+            setProjetos(data.content);
 
             if (setPaginacao) {
                 setPaginacao({
@@ -33,30 +33,23 @@ export async function listarUsuarios(setUsuarios, page = 0, size = 20, sort = "n
             }
         }
     } catch (erro) {
-        alert("Erro ao listar os usuários.");
-        console.error("Erro ao exibir a lista de usuários: ", erro);
+        alert("Erro ao listar os projetos.");
+        console.error("Erro ao exibir a lista de projetos: ", erro);
     }
 }
 
-
-export async function obterDadosUsuario(
+export async function obterDadosProjeto(
     id, 
     setNome,
-    setCpf,
-    setEmail,
-    setDataNascimento,
-    setSenha,
-    setStatus
+    setDescricao,
+    setResponsavel
 ) {
-    await api.get(`/usuarios/${id}`)
+    await api.get(`/projetos/${id}`)
         .then((response) => {
             if (response.status === 200) {
                 setNome(response.data.nome)
-                setCpf(response.data.cpf)
-                setEmail(response.data.email)
-                setDataNascimento(response.data.dataNascimento)
-                setSenha(response.data.senha)
-                setStatus(response.data.status)
+                setDescricao(response.data.descricao)
+                setResponsavel(response.data.responsavel.id)
             }
         })
         .catch((erro => {
@@ -65,8 +58,8 @@ export async function obterDadosUsuario(
         }))
 }
 
-export async function editarUsuario(id, dadosUsuario, setExibirModal) {
-    await api.put(`/usuarios/${id}`, dadosUsuario)
+export async function editarProjeto(id, dadosProjeto, setExibirModal) {
+    await api.put(`/projetos/${id}`, dadosProjeto)
         .then((response) => {
             if (response.status === 200) {
                setExibirModal(true)
@@ -78,9 +71,8 @@ export async function editarUsuario(id, dadosUsuario, setExibirModal) {
         })
 }
 
-
-export async function deletarUsuario(id, setExibirModal) {
-    await api.delete(`/usuarios/${id}`)
+export async function deletarProjeto(id, setExibirModal) {
+    await api.delete(`/projetos/${id}`)
     .then((response) => {
         if(response.status === 204){
             setExibirModal(false)

@@ -3,8 +3,10 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { deletarUsuario, listarUsuarios } from '../../service/apiUsuario'
 import { useNavigate } from "react-router-dom";
-import "../Usuario/usuario.css"
 import Modal from "../../components/Modal";
+import Paginacao from "../../components/Pagination";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
 
 function Usuarios() {
     const navigate = useNavigate()
@@ -12,9 +14,18 @@ function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [exibirModal, setExibirModal] = useState(false);
     const [usuarioAExcluir, setusuarioAExcluir] = useState();
+    const [paginacao, setPaginacao] = useState({
+        totalPages: 0,
+        currentPage: 0,
+        totalElements: 0
+    });
+
+    const carregarUsuarios = (pagina) => {
+        listarUsuarios(setUsuarios, pagina, 20, "nome,asc", setPaginacao);
+    };
 
     useEffect(() => {
-        listarUsuarios(setUsuarios)
+        carregarUsuarios(0);
     }, [])
 
     const confirmarExclusao = (id) => {
@@ -27,7 +38,7 @@ function Usuarios() {
         setExibirModal(false)
     }
 
-    const excluirUsuario = async() => {
+    const excluirUsuario = async () => {
         await deletarUsuario(usuarioAExcluir, setExibirModal)
         await listarUsuarios(setUsuarios)
     }
@@ -38,7 +49,10 @@ function Usuarios() {
             <section id="usuario" className="container justify-content-center align-items-center">
                 <h1 className="text-center p-4"> Usuários Cadastrados </h1>
                 <div className="d-flex mb-3">
-                    <button className="rounded-pill p-2 text-white bg-primary border-0" onClick={() => navigate("/usuarios/cadastro")}>Cadastar Usuário</button>
+                    <button className="rounded-pill p-2 text-white bg-primary border-0 d-flex justify-content-center align-items-center gap-1" onClick={() => navigate("/usuarios/cadastro")}>
+                        <IoMdAdd />
+                        Cadastar Usuário
+                    </button>
                 </div>
                 <table className="table table-bordered table-hover m-0">
                     <thead>
@@ -62,18 +76,24 @@ function Usuarios() {
                                 <td>{usuario.idade}</td>
                                 <td>{usuario.status}</td>
                                 <td className="d-flex gap-2">
-                                    <button type="button" className="btn btn-warning rounded-pill" onClick={() => navigate(`/usuarios/${usuario.id}`)}>Editar</button>
-                                    <button type="button" className="btn btn-danger rounded-pill" onClick={() => confirmarExclusao(usuario.id)}>Excluir</button>
+                                    <button type="button" className="btn btn-warning rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => navigate(`/usuarios/${usuario.id}`)}>
+                                        <MdEdit />
+                                        Editar</button>
+                                    <button type="button" className="btn btn-danger rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => confirmarExclusao(usuario.id)}>
+                                        <MdDelete />
+                                        Excluir</button>
                                 </td>
                             </tr>
                         ))}
+
                     </tbody>
                 </table>
+                <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarUsuarios} />
             </section>
             {exibirModal && (
                 <Modal
                     titulo={"Confirmação de exclusão"}
-                    texto={"Deseja excluir o usuário"}
+                    texto={"Deseja excluir o usuário?"}
                     textoBotao1={"Sim, excluir."}
                     onClickBotao1={excluirUsuario}
                     textoBotao2={"Não, cancelar."}

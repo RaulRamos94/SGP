@@ -50,6 +50,8 @@ public class TarefaService {
             tarefa.setDataConclusao(dadosTarefa.getDataConclusao());
             tarefa.setPrioridade(dadosTarefa.getPrioridade());
             tarefa.setStatus(dadosTarefa.getStatus());
+            tarefa.setProjeto(dadosTarefa.getProjeto());
+            tarefa.setUsuario(dadosTarefa.getUsuario());
 
             return tarefaRepository.save(tarefa);
         }

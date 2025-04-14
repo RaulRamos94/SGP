@@ -15,6 +15,7 @@ function Rotas() {
             <Routes>
                 <Route index path="/" element={<Login />} />
                 <Route index path="/dashboard" element={<Dashboard/>} />
+                <Route index path="/home" element={<Dashboard/>} />
                 <Route index path="/usuarios/cadastro" element={<UsuarioForm/>} />
                 <Route index path="/usuarios/:id" element={<UsuarioForm/>} />
                 <Route index path="/usuarios" element={<Usuario/>} />
