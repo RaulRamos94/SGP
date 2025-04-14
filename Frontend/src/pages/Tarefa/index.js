@@ -82,7 +82,7 @@ function Tarefa() {
                                 <td>{tarefa.status}</td>
                                 <td>{tarefa.projeto.nome}</td>
                                 <td>{tarefa.usuario.nome}</td>
-                                <td className="d-flex gap-2">
+                                <td className="d-flex gap-2 justify-content-center">
                                     <button type="button" className="btn btn-warning rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => navigate(`/tarefas/${tarefa.id}`)}>
                                         <MdEdit />
                                         Editar</button>

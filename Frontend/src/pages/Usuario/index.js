@@ -4,7 +4,6 @@ import Header from "../../components/Header";
 import { deletarUsuario, listarUsuarios } from '../../service/apiUsuario'
 import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
-import Paginacao from "../../components/Pagination";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 
@@ -14,14 +13,9 @@ function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [exibirModal, setExibirModal] = useState(false);
     const [usuarioAExcluir, setusuarioAExcluir] = useState();
-    const [paginacao, setPaginacao] = useState({
-        totalPages: 0,
-        currentPage: 0,
-        totalElements: 0
-    });
 
-    const carregarUsuarios = (pagina) => {
-        listarUsuarios(setUsuarios, pagina, 20, "nome,asc", setPaginacao);
+    const carregarUsuarios = () => {
+        listarUsuarios(setUsuarios);
     };
 
     useEffect(() => {
@@ -75,7 +69,7 @@ function Usuarios() {
                                 <td>{usuario.email}</td>
                                 <td>{usuario.idade}</td>
                                 <td>{usuario.status}</td>
-                                <td className="d-flex gap-2">
+                                <td className="d-flex gap-2 justify-content-center">
                                     <button type="button" className="btn btn-warning rounded-pill d-flex justify-content-center align-items-center gap-1" onClick={() => navigate(`/usuarios/${usuario.id}`)}>
                                         <MdEdit />
                                         Editar</button>
@@ -85,10 +79,8 @@ function Usuarios() {
                                 </td>
                             </tr>
                         ))}
-
                     </tbody>
                 </table>
-                <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarUsuarios} />
             </section>
             {exibirModal && (
                 <Modal

@@ -11,31 +11,40 @@ function Header() {
     // const { usuarioLogado } = useContext(GlobalContexts)
 
     return (
-        <nav className="navbar p-0 m-0 bg-info-subtle">
-                <div className="ms-5">
-                    <Link to="/usuarios" className="d-flex justify-content-center">
-                        <img src={logo} alt="Treina Recife" width="250px" />
+        <nav className="navbar p-0 m-0 bg-info-subtle p-3">
+            <div className="ms-5">
+                <Link to="/usuarios" className="d-flex justify-content-center">
+                    <img src={logo} alt="Treina Recife" width="250px" />
+                </Link>
+            </div>
+            <div className="me-5">
+                <div className="d-flex justify-content-center align-items-center me-5 gap-4">
+                    <Link to="/home" className="navbar-brand d-flex flex-column align-items-center">
+                        <IoHomeOutline />
+                        Home
+                    </Link>
+                    <Link to="/projetos" className="navbar-brand d-flex d-flex flex-column align-items-center">
+                        <GrProjects />
+                        Projetos
+                    </Link>
+                    <Link to="/tarefas" className="navbar-brand d-flex d-flex flex-column align-items-center">
+                        <BsListTask />
+                        Tarefas
+                    </Link>
+                    <Link to="/usuarios" className="navbar-brand d-flex d-flex flex-column align-items-center">
+                        <FaUsers />
+                        Usuários
                     </Link>
                 </div>
-                <div className="d-flex justify-content-center align-items-center gap-2">
-                    <Link to="/home" className="navbar-brand d-flex justify-content-center align-items-center gap-1">
-                    <IoHomeOutline />
-                    Home</Link>
-                    <Link to="/projetos" className="navbar-brand d-flex justify-content-center align-items-center gap-1">
-                    <GrProjects />
-                    Projetos</Link>
-                    <Link to="/tarefas" className="navbar-brand d-flex justify-content-center align-items-center gap-1">
-                    <BsListTask />
-                    Tarefas</Link>
-                    <Link to="/usuarios" className="navbar-brand d-flex justify-content-center align-items-center gap-1">
-                    <FaUsers />
-                    Usuários</Link>
-                </div>
-                <div className="d-flex justify-content-center align-items-center me-5">
+            </div>
+            <div className="d-flex flex-column justify-content-center align-items-center me-4">
+                <p>Bem-vindo, Raul!</p>
+                <div>
                     <button className="d-flex justify-content-center align-items-center gap-1 border-0 bg-transparent" >
-                        <IoIosLogOut size={32}/>
+                        Sair<IoIosLogOut size={32} />
                     </button>
                 </div>
+            </div>
         </nav>
     );
 }
