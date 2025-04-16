@@ -8,6 +8,7 @@ import com.tarefas.api.constants.StatusUsuario;
 import com.tarefas.api.dto.UsuarioDTO;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,10 +35,6 @@ public class Usuario {
     @Column(name = "NOME_USUARIO", nullable = false)
     private String nome;
 
-    // @Min(value = 0)
-    // @Max(value = 100)
-    // private int idade;
-
     @NotNull(message = "Campo cpf é obrigatório.")
     @Column(name = "CPF_USUARIO", nullable = false, unique = true)
     private String cpf;
@@ -60,6 +57,9 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private StatusUsuario status;
 
+    @Embedded
+    private Endereco endereco;
+
     public UsuarioDTO toDTO() {
         UsuarioDTO dto = new UsuarioDTO();
 
@@ -75,6 +75,7 @@ public class Usuario {
 
         dto.setIdade(periodo.getYears());
         dto.setStatus(status);
+        dto.setEndereco(endereco);
 
         return dto;
     }

@@ -50,7 +50,7 @@ function Projeto() {
         <>
             <Header />
             <section id="projeto" className="container justify-content-center align-items-center">
-                <h1 className="text-center p-4"> Projetos Cadastrados </h1>
+                <h1 className="text-center p-4 text-white"> Projetos Cadastrados </h1>
                 <div className="d-flex mb-3">
                     <button className="rounded-pill p-2 text-white bg-primary border-0 d-flex justify-content-center align-items-center gap-1" onClick={() => navigate("/projetos/cadastro")}>
                     <IoMdAdd />
@@ -89,7 +89,7 @@ function Projeto() {
 
                     </tbody>
                 </table>
-                <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarProjetos} />
+                {/* <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarProjetos} /> */}
             </section>
             {exibirModal && (
                 <Modal

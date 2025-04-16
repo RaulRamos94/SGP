@@ -36,7 +36,13 @@ function UsuarioForm() {
                 setDataNascimento,
                 setSenha,
                 setStatus,
-                setCep
+                setCep,
+                setLogradouro,
+                setNumero,
+                setBairro,
+                setCidade,
+                setEstado,
+                setComplemento
             )
         }
     }, [])
@@ -50,7 +56,16 @@ function UsuarioForm() {
             email,
             senha,
             dataNascimento: formatarData(dataNascimento),
-            status
+            status,
+            endereco: {
+                cep,
+                logradouro,
+                numero,
+                bairro,
+                cidade,
+                estado,
+                complemento
+              }
         }
         if (id) {
             await editarUsuario(id, payload, setExibirModal)
@@ -82,15 +97,16 @@ function UsuarioForm() {
         if (cep.length === 9) {
             obterEndereco(cep, setLogradouro, setBairro, setCidade, setEstado);
         }
-    }, [cep]); // A cada mudança no CEP, a função buscarCep será chamada
+    }, [cep]);
 
 
     return (
         <>
             <Header />
             <div className="d-flex justify-content-center">
+                <main className="bg-light rounded rounded-3 mt-4">
                 <form id="usuario-form" className="container row justify-content-center" onSubmit={cadastrarUsuario}>
-                    <h1 className="text-center mt-2">Dados do Usuário</h1>
+                    <h1 className="text-center mt-2 text-white">Dados do Usuário</h1>
                     <div className="col-md-8 col-12">
                         <label htmlFor="nome" className="form-label">Nome</label>
                         <input type="text" className="form-control" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
@@ -163,6 +179,7 @@ function UsuarioForm() {
                     textoBotao1="OK"
                     onClickBotao1={confirmarCadastro}
                 />)}
+                </main>
             </div>
             <Footer />
         </>

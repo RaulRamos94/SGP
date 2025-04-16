@@ -2,7 +2,7 @@ function Paginacao({ totalPages, currentPage, onPageChange }) {
     if (totalPages <= 1) return null;
 
     return (
-        <div className="d-flex justify-content-center my-4 gap-2 flex-wrap">
+        <div className="d-flex justify-content-center p-4 gap-2 flex-wrap bg-white">
             <button
                 className="btn btn-outline-secondary rounded-pill"
                 onClick={() => onPageChange(currentPage - 1)}

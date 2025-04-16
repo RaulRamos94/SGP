@@ -53,8 +53,8 @@ export async function obterDadosProjeto(
             }
         })
         .catch((erro => {
-            alert("Erro ao obter dados do usuário.")
-            console.error("Erro ao obter dados do usuário.", erro)
+            alert("Erro ao obter dados do projeto.")
+            console.error("Erro ao obter dados do projeto.", erro)
         }))
 }
 
@@ -66,8 +66,8 @@ export async function editarProjeto(id, dadosProjeto, setExibirModal) {
             }
         })
         .catch((erro) => {
-            alert("Erro ao obter dados do usuário.")
-            console.error("Erro ao obter dados do usuário.", erro)
+            alert("Erro ao obter dados do projeto.")
+            console.error("Erro ao obter dados do projeto.", erro)
         })
 }
 
@@ -79,8 +79,8 @@ export async function deletarProjeto(id, setExibirModal) {
         }
     })
     .catch((erro) => {
-        alert("Erro ao excluir usuário.")
-        console.error("Erro ao excluir usuário.")
+        alert("Erro ao excluir projeto.")
+        console.error("Erro ao excluir projeto.", erro)
     })
     
 }

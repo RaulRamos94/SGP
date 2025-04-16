@@ -8,6 +8,7 @@ import ProjetoForm from "../pages/Projeto/ProjetoForm";
 import Projeto from "../pages/Projeto";
 import TarefaForm from "../pages/Tarefa/TarefaForm";
 import Tarefas from "../pages/Tarefa";
+import Home from "../pages/Home";
 
 function Rotas() {
     return (
@@ -15,7 +16,7 @@ function Rotas() {
             <Routes>
                 <Route index path="/" element={<Login />} />
                 <Route index path="/dashboard" element={<Dashboard/>} />
-                <Route index path="/home" element={<Dashboard/>} />
+                <Route index path="/home" element={<Home/>} />
                 <Route index path="/usuarios/cadastro" element={<UsuarioForm/>} />
                 <Route index path="/usuarios/:id" element={<UsuarioForm/>} />
                 <Route index path="/usuarios" element={<Usuario/>} />

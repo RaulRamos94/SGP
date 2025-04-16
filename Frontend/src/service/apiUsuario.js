@@ -40,13 +40,20 @@ export async function listarUsuarios(setUsuarios, page = 0, size = 20, sort = "n
 
 
 export async function obterDadosUsuario(
-    id, 
+    id,
     setNome,
     setCpf,
     setEmail,
     setDataNascimento,
     setSenha,
-    setStatus
+    setStatus,
+    setCep,
+    setLogradouro,
+    setNumero,
+    setBairro,
+    setCidade,
+    setEstado,
+    setComplemento
 ) {
     await api.get(`/usuarios/${id}`)
         .then((response) => {
@@ -57,6 +64,15 @@ export async function obterDadosUsuario(
                 setDataNascimento(response.data.dataNascimento)
                 setSenha(response.data.senha)
                 setStatus(response.data.status)
+
+                const endereco = response.data.endereco || {};
+                setCep(endereco.cep || "")
+                setLogradouro(endereco.logradouro || "")
+                setNumero(endereco.numero || "")
+                setBairro(endereco.bairro || "")
+                setCidade(endereco.cidade || "")
+                setEstado(endereco.estado || "")
+                setComplemento(endereco.complemento || "")
             }
         })
         .catch((erro => {
@@ -69,7 +85,7 @@ export async function editarUsuario(id, dadosUsuario, setExibirModal) {
     await api.put(`/usuarios/${id}`, dadosUsuario)
         .then((response) => {
             if (response.status === 200) {
-               setExibirModal(true)
+                setExibirModal(true)
             }
         })
         .catch((erro) => {
@@ -81,14 +97,14 @@ export async function editarUsuario(id, dadosUsuario, setExibirModal) {
 
 export async function deletarUsuario(id, setExibirModal) {
     await api.delete(`/usuarios/${id}`)
-    .then((response) => {
-        if(response.status === 204){
-            setExibirModal(false)
-        }
-    })
-    .catch((erro) => {
-        alert("Erro ao excluir usuário.")
-        console.error("Erro ao excluir usuário.")
-    })
-    
+        .then((response) => {
+            if (response.status === 204) {
+                setExibirModal(false)
+            }
+        })
+        .catch((erro) => {
+            alert("Erro ao excluir usuário.")
+            console.error("Erro ao excluir usuário.")
+        })
+
 }

@@ -50,7 +50,7 @@ function Tarefa() {
         <>
             <Header />
             <section id="tarefa" className="container justify-content-center align-items-center">
-                <h1 className="text-center p-4"> Tarefas Cadastradas </h1>
+                <h1 className="text-center p-4 text-white"> Tarefas Cadastradas </h1>
                 <div className="d-flex mb-3">
                     <button className="rounded-pill p-2 text-white bg-primary border-0 d-flex justify-content-center align-items-center gap-1" onClick={() => navigate("/tarefas/cadastro")}>
                         <IoMdAdd />
@@ -94,7 +94,7 @@ function Tarefa() {
                         ))}
                     </tbody>
                 </table>
-                <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarTarefas} />
+                {/* <Paginacao totalPages={paginacao.totalPages} currentPage={paginacao.currentPage} onPageChange={carregarTarefas} /> */}
             </section>
             {exibirModal && (
                 <Modal

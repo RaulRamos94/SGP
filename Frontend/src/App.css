@@ -1,0 +1,9 @@
+body {
+    background-image: url('../public/FUNDO5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+  }

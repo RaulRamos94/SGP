@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tarefas.api.dto.UsuarioDTO;
 import com.tarefas.api.model.Usuario;
 import com.tarefas.api.service.UsuarioService;
-
 import jakarta.validation.Valid;
 
 @RestController
@@ -98,5 +97,4 @@ public class UsuarioController {
 
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.atualizarUsuario(id, dadosUsuario));
     }
-
 }

@@ -3,6 +3,7 @@ package com.tarefas.api.dto;
 import java.time.LocalDate;
 
 import com.tarefas.api.constants.StatusUsuario;
+import com.tarefas.api.model.Endereco;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,5 +22,6 @@ public class UsuarioDTO {
     private LocalDate dataNascimento;
     private String senha;
     private StatusUsuario status; 
+    private Endereco endereco;
     
 }

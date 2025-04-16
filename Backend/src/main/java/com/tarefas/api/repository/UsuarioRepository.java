@@ -12,6 +12,8 @@ import com.tarefas.api.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+    Optional<Usuario> findById(Long id);
+
     Optional<Usuario> findByCpf(String cpf);
 
     Optional<Usuario> findByEmail(String email);
