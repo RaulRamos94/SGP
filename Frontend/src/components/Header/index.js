@@ -11,7 +11,7 @@ import './header.css'
 
 function Header() {
 
-    // const { usuarioLogado } = useContext(GlobalContexts)
+    const { usuarioLogado } = useContext(GlobalContexts)
 
     return (
         <nav className="navbar p-0 m-0 bg-light p-3">
@@ -41,7 +41,7 @@ function Header() {
                 </div>
             </div>
             <div className="d-flex flex-column justify-content-center align-items-center me-4">
-                <p>Bem-vindo, !</p>
+                <p>Bem-vindo,<b> {usuarioLogado?.nome || "!"}</b></p>
                 <div>
                     <Link to="/" className="d-flex justify-content-center align-items-center gap-1 border-0 bg-transparent text-decoration-none opcoes" >
                         Sair<IoIosLogOut size={32} />

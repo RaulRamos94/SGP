@@ -76,7 +76,8 @@ function Dashboard() {
                     <div className="p-4 bg-light rounded shadow text-center" style={{ minWidth: "200px" }}>
                         <FaTasks size={40} className="text-warning mb-2" />
                         <h4>Tarefas</h4>
-                        <p><h3>{qtdTarefas}</h3></p>
+                        <p></p>
+                        <h3>{qtdTarefas}</h3>
                         <div className="d-flex gap-4">
                             <div>
                                 <h6>Status</h6>

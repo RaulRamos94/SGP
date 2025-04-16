@@ -13,14 +13,14 @@ function Login() {
 
     const { login } = useContext(GlobalContexts)
 
-    const [email, setEmail] = useState("");
+    const [nome, setNome] = useState("");
     const [senha, setSenha] = useState("");
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [manterConectado, setManterConectado] = useState(false);
 
     const efetuarLogin = (e) => {
         e.preventDefault();
-        const dadosUsuario = { email, senha, manterConectado }
+        const dadosUsuario = { nome , senha, manterConectado }
         login(dadosUsuario)
         navigate("/home")
     }
@@ -37,7 +37,7 @@ function Login() {
                             <span className="input-group-text bg-body border-0">
                                 <IoPersonOutline size={20}  />
                             </span>
-                            <input type="text" className="form-control border-0" id="exampleInputEmail1" placeholder="Usuário" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="text" className="form-control border-0" id="exampleInputEmail1" placeholder="Usuário" value={nome} onChange={(e) => setNome(e.target.value)} />
 
                         </div>
                         <div className="input-group mt-3 border border-1 rounded-2">
